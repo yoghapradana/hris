@@ -19,6 +19,17 @@
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
 
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                @if(session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+
                                 <form method="POST" action="{{ route('login.post') }}" class="user">
                                     @csrf
 
@@ -44,7 +55,7 @@
                                             <label class="custom-control-label" for="remember">Remember Me</label>
                                         </div>
                                     </div>
-                                    
+
                                     <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                 </form>
 

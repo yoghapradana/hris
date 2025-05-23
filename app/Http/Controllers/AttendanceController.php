@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserAttendance;
-//use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -55,8 +56,21 @@ class AttendanceController extends Controller
             ->with('approver.profile') // preload related approver/profile
             ->get();
 
-        return view('main.attendance', compact('attendances', 'currentAttendance'));
+        return view('attendances.index', compact('attendances', 'currentAttendance'));
     }
+
+    public function show($id)
+    {
+        $user = auth()->user();
+
+    $attendance = UserAttendance::where('user_id', $user->id)
+        ->where('id', $id)
+        ->firstOrFail(); // <-- This line is essential
+
+    return view('attendances.detail-card', compact('attendance'));
+    }
+
+
 
     public function pending()
     {
@@ -104,9 +118,12 @@ class AttendanceController extends Controller
             $attendance->work_mode = $request->work_mode; // Assuming you have work mode in the request
 
             if ($request->hasFile('selfie')) {
-                $username = auth()->user()->username;
-                $timestamp = now()->format('Ymd_His'); // e.g. 20250513_142532
-                $filename = "img_checkin%-%-{$timestamp}%-%-{$username}.png";
+                // Generate a unique filename for the selfie
+                $userid = str_pad(auth()->user()->id, 6, '0', STR_PAD_LEFT);
+                $prefix = config('custom.prefix.img.check.in');
+                $timestamp = now()->format('YmdHis'); // e.g. 20250513142532
+                //$filename = "img_checkin%-%-{$timestamp}%-%-{$username}.png";
+                $filename = "{$prefix}{$userid}{$timestamp}.png";
 
                 // Convert to PNG and resize to width 512px (height auto, keeps aspect ratio)
                 $image = $request->file('image');
@@ -120,9 +137,10 @@ class AttendanceController extends Controller
 
                 //uncomment below if you want to save the image in storage
                 // Save to storage/app/public/img
-                //Storage::disk('public')->put("img/{$filename}", $image);
+                Storage::disk('public')->put("img/{$filename}", $image);
 
                 // this will save the image in public/img
+                /*
                 $publicPath = public_path("img");
 
                 if (!File::exists($publicPath)) {
@@ -130,6 +148,7 @@ class AttendanceController extends Controller
                 }
 
                 $image->save("{$publicPath}/{$filename}");
+                */
                 $attendance->check_in_img_path = "img/{$filename}";
 
             }
@@ -171,9 +190,12 @@ class AttendanceController extends Controller
             $attendance->check_out_longitude = $request->longitude; // Assuming you have longitude in the request
 
             if ($request->hasFile('selfie')) {
-                $username = auth()->user()->username;
-                $timestamp = now()->format('Ymd_His'); // e.g. 20250513_142532
-                $filename = "img_checkout%-%-{$timestamp}%-%-{$username}.png";
+                // Generate a unique filename for the selfie
+                $userid = str_pad(auth()->user()->id, 6, '0', STR_PAD_LEFT);
+                $prefix = config('custom.prefix.img.check.out');
+                $timestamp = now()->format('YmdHis'); // e.g. 20250513142532
+                //$filename = "img_checkout%-%-{$timestamp}%-%-{$username}.png";
+                $filename = "{$prefix}{$userid}{$timestamp}.png";
 
                 // Convert to PNG and resize to width 512px (height auto, keeps aspect ratio)
                 $image = $request->file('image');
@@ -187,9 +209,10 @@ class AttendanceController extends Controller
 
                 //uncomment below if you want to save the image in storage
                 // Save to storage/app/public/img
-                //Storage::disk('public')->put("img/{$filename}", $image);
+                Storage::disk('public')->put("img/{$filename}", $image);
 
                 // this will save the image in public/img
+                /*
                 $publicPath = public_path("img");
 
                 if (!File::exists($publicPath)) {
@@ -197,6 +220,7 @@ class AttendanceController extends Controller
                 }
 
                 $image->save("{$publicPath}/{$filename}");
+                */
                 $attendance->check_out_img_path = "img/{$filename}";
 
             }
@@ -207,30 +231,30 @@ class AttendanceController extends Controller
     }
 
     public function approve($id)
-{
-    $attendance = UserAttendance::findOrFail($id);
+    {
+        $attendance = UserAttendance::findOrFail($id);
 
-    // Change the approval status to 'approved'
-    $attendance->approval_status = 'approved';
-    $attendance->approved_by = auth()->user()->id; // Assuming you want to set the approver
-    $attendance->approved_at = now(); // Set the approval timestamp
-    $attendance->save();
+        // Change the approval status to 'approved'
+        $attendance->approval_status = 'approved';
+        $attendance->approved_by = auth()->user()->id; // Assuming you want to set the approver
+        $attendance->approved_at = now(); // Set the approval timestamp
+        $attendance->save();
 
-    return redirect()->route('attendance.pending')->with('success', 'Attendance approved.');
-}
+        return redirect()->route('attendance.pending')->with('success', 'Attendance approved.');
+    }
 
-public function reject($id)
-{
-    $attendance = UserAttendance::findOrFail($id);
+    public function reject($id)
+    {
+        $attendance = UserAttendance::findOrFail($id);
 
-    // Change the approval status to 'rejected'
-    $attendance->approval_status = 'rejected';
-    $attendance->approved_by = auth()->user()->id; // Assuming you want to set the approver
-    $attendance->approved_at = now(); // Set the approval timestamp
-    $attendance->save();
+        // Change the approval status to 'rejected'
+        $attendance->approval_status = 'rejected';
+        $attendance->approved_by = auth()->user()->id; // Assuming you want to set the approver
+        $attendance->approved_at = now(); // Set the approval timestamp
+        $attendance->save();
 
-    return redirect()->route('attendance.pending')->with('success', 'Attendance rejected.');
-}
+        return redirect()->route('attendance.pending')->with('success', 'Attendance rejected.');
+    }
 
 }
 

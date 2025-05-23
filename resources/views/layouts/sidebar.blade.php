@@ -50,16 +50,16 @@
         <div class="sidebar-heading">
             Manager Menu
         </div>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmployee"
+        <li class="nav-item {{ (Route::is('attendance.pending')||Route::is('profile.index')) ? 'active' : '' }}">
+            <a class="nav-link {{ (Route::is('attendance.pending')||Route::is('profile.index')) ? '' : 'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseEmployee"
                 aria-expanded="true" aria-controls="collapseEmployee">
                 <i class="fas fa-fw fa-history"></i>
                 <span>Employee</span>
             </a>
-            <div id="collapseEmployee" class="collapse" aria-labelledby="headingEmployee" data-parent="#accordionSidebar">
+            <div id="collapseEmployee" class="collapse {{ (Route::is('attendance.pending')||Route::is('profile.index')) ? 'show' : '' }}" aria-labelledby="headingEmployee" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('attendance.pending') }}">Attendance List</a>
-                    <a class="collapse-item" href="#">Employee list</a>
+                    <a class="collapse-item {{ Route::is('attendance.pending') ? 'active' : '' }}" href="{{ route('attendance.pending') }}">Attendance List</a>
+                    <a class="collapse-item {{ Route::is('profile.index') ? 'active' : '' }}" href="{{ route('profile.index') }}">Employee list</a>
                 </div>
             </div>
         </li>

@@ -4,10 +4,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TimesheetController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EnsureUserIsAuthenticated;
 
 
-Route::middleware(['auth'])->group(function () {
+
+Route::middleware([EnsureUserIsAuthenticated::class])->group(function () {
     Route::get('/', function () {
         return redirect()->route('dashboard');
     });
@@ -22,9 +23,23 @@ Route::middleware(['auth'])->group(function () {
 
     })->name('dashboard');
 
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    // Edit current user's profile
+    //Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
+    // profile.show must in the bottom of the route list
+    // or it will error because any string after profile/ will mistaken as {user} variable
+    Route::get('/profile/index', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit/{user?}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update/{user}', [ProfileController::class, 'updateOther'])->name('profile.update.other');
+    Route::get('/profile/{user?}', [ProfileController::class, 'show'])->name('profile.show');
+    
+    
+
+
+    
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance');
+    Route::get('/attendance/{id}', [AttendanceController::class, 'show'])->name('attendance.show');
     Route::get('/attendancelist', [AttendanceController::class, 'pending'])->name('attendance.pending');
 
     Route::put('/attendance/{attendance}/approve', [AttendanceController::class, 'approve'])->name('attendance.approve');
@@ -34,9 +49,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/attendance/check-in', [AttendanceController::class, 'checkIn'])->name('attendance.checkin');
     Route::post('/attendance/check-out', [AttendanceController::class, 'checkOut'])->name('attendance.checkout');
 
-    Route::get('/timesheets', [TimesheetController::class, 'index'])->name('timesheets.index');
-    Route::get('/timesheets/create', [TimesheetController::class, 'create'])->name('timesheets.create');
-    Route::post('/timesheets', [TimesheetController::class, 'store'])->name('timesheets.store');
+    Route::resource('timesheets', TimesheetController::class)->only([
+        'index', 'create', 'store'
+    ]);
+
 
     Route::get('/ts', function () {
         return view('timesheets.index');
@@ -48,19 +64,22 @@ Route::middleware(['auth'])->group(function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
 Route::get('/checkin', function () {
     return view('main.check');
 });
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::get('/test/{view}', function ($view) {
+    $path = 'test.' . str_replace('/', '.', $view);
+
+    if (view()->exists($path)) {
+        return view($path);
+    }
+
+    abort(404);
+})->where('view', '.*');

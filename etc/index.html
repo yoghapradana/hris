@@ -1,0 +1,158 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-700 min-h-screen p-6">
+  <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+    <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+      <div>
+        <p class="text-sm text-gray-500">Selamat datang, <span class="font-semibold text-gray-900">Ahmad Fauzi</span></p>
+        <p class="text-xs text-gray-400 mt-1">Senin, 16 Maret 2025</p>
+      </div>
+      <div class="flex items-center space-x-3 mt-4 sm:mt-0">
+        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-semibold">AF</div>
+        <a href="#" class="text-xs text-gray-400 hover:text-gray-600 flex items-center space-x-1">
+          <span>Profile</span>
+          <i class="fas fa-chevron-right text-[10px]"></i>
+        </a>
+      </div>
+    </header>
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="border border-gray-200 rounded-lg p-4 flex flex-col justify-between">
+        <div class="flex items-center space-x-2 text-gray-400 mb-2">
+          <i class="far fa-envelope text-lg"></i>
+          <span class="text-xs font-semibold">Hari Kerja</span>
+        </div>
+        <div class="text-2xl font-semibold text-gray-900">18</div>
+      </div>
+
+      <div class="border border-gray-200 rounded-lg p-4 flex flex-col justify-between">
+        <div class="flex items-center space-x-2 text-gray-400 mb-2">
+          <i class="far fa-clock text-lg"></i>
+          <span class="text-xs font-semibold">Izin</span>
+        </div>
+        <div class="text-2xl font-semibold text-gray-900">16</div>
+      </div>
+
+      <div class="border border-gray-200 rounded-lg p-4 flex flex-col justify-between">
+        <div class="flex items-center space-x-2 text-gray-400 mb-2">
+          <i class="fas fa-exclamation-triangle text-lg"></i>
+          <span class="text-xs font-semibold">Terlambat</span>
+        </div>
+        <div class="text-2xl font-semibold text-gray-900">2</div>
+      </div>
+
+      <div class="border border-gray-200 rounded-lg p-4 flex flex-col justify-between space-y-3">
+        <div class="flex items-center space-x-2 text-gray-400 text-xs font-semibold mb-1">
+          <i class="far fa-id-card"></i>
+          <span>Data Pribadi</span>
+        </div>
+        <p class="text-[10px] text-gray-400 mb-2">Ubah dan perbarui informasi pribadi Anda</p>
+        <button class="bg-blue-600 text-white text-xs rounded px-3 py-1 w-max hover:bg-blue-700 transition">Lihat Detail</button>
+      </div>
+
+      <div class="border border-gray-200 rounded-lg p-4 flex flex-col justify-between space-y-3">
+        <div class="flex items-center space-x-2 text-gray-400 text-xs font-semibold mb-1">
+          <i class="far fa-calendar-check"></i>
+          <span>Absensi</span>
+        </div>
+        <p class="text-[10px] text-gray-400 mb-2">Menu URL Absensi Pegawai</p>
+        <button class="bg-blue-600 text-white text-xs rounded px-3 py-1 w-max hover:bg-blue-700 transition">Absensi</button>
+      </div>
+
+      <div class="border border-gray-200 rounded-lg p-4 flex flex-col justify-between space-y-3">
+        <div class="flex items-center space-x-2 text-gray-400 text-xs font-semibold mb-1">
+          <i class="far fa-clock"></i>
+          <span>Timesheet</span>
+        </div>
+        <p class="text-[10px] text-gray-400 mb-2">Menu URL Timesheet</p>
+        <button class="bg-blue-600 text-white text-xs rounded px-3 py-1 w-max hover:bg-blue-700 transition">Lihat Detail</button>
+      </div>
+
+      <div class="border border-gray-200 rounded-lg p-4 flex flex-col justify-between space-y-3">
+        <div class="flex items-center space-x-2 text-gray-400 text-xs font-semibold mb-1">
+          <i class="far fa-calendar-alt"></i>
+          <span>Cuti</span>
+        </div>
+        <p class="text-[10px] text-gray-400 mb-2">Menu URL Record Cuti, Sakit, dan Izin</p>
+        <button class="bg-blue-600 text-white text-xs rounded px-3 py-1 w-max hover:bg-blue-700 transition">Lihat Detail</button>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-sm font-semibold text-gray-700 mb-3">Riwayat Kehadiran</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs text-left border border-gray-200 rounded-lg">
+          <thead class="bg-gray-50 text-gray-500">
+            <tr>
+              <th class="py-2 px-3 border-r border-gray-200 font-semibold">Tanggal</th>
+              <th class="py-2 px-3 border-r border-gray-200 font-semibold">Jam Masuk</th>
+              <th class="py-2 px-3 border-r border-gray-200 font-semibold">Jam Keluar</th>
+              <th class="py-2 px-3 font-semibold">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600">
+            <tr class="border-t border-gray-200">
+              <td class="py-2 px-3 border-r border-gray-200">15 Maret 2025</td>
+              <td class="py-2 px-3 border-r border-gray-200">08:05</td>
+              <td class="py-2 px-3 border-r border-gray-200">17:00</td>
+              <td class="py-2 px-3">
+                <span class="text-green-500 font-semibold text-[10px]">Hadir</span>
+              </td>
+            </tr>
+            <tr class="border-t border-gray-200">
+              <td class="py-2 px-3 border-r border-gray-200">14 Maret 2025</td>
+              <td class="py-2 px-3 border-r border-gray-200">08:30</td>
+              <td class="py-2 px-3 border-r border-gray-200">17:15</td>
+              <td class="py-2 px-3">
+                <span class="text-yellow-400 font-semibold text-[10px]">Izin</span>
+              </td>
+            </tr>
+            <tr class="border-t border-gray-200">
+              <td class="py-2 px-3 border-r border-gray-200">13 Maret 2025</td>
+              <td class="py-2 px-3 border-r border-gray-200">08:00</td>
+              <td class="py-2 px-3 border-r border-gray-200">17:00</td>
+              <td class="py-2 px-3">
+                <span class="text-green-500 font-semibold text-[10px]">Hadir</span>
+              </td>
+            </tr>
+            <tr class="border-t border-gray-200">
+              <td class="py-2 px-3 border-r border-gray-200">12 Maret 2025</td>
+              <td class="py-2 px-3 border-r border-gray-200"></td>
+              <td class="py-2 px-3 border-r border-gray-200"></td>
+              <td class="py-2 px-3">
+                <span class="text-red-400 font-semibold text-[10px]">Tidak Hadir</span>
+              </td>
+            </tr>
+            <tr class="border-t border-gray-200">
+              <td class="py-2 px-3 border-r border-gray-200">11 Maret 2025</td>
+              <td class="py-2 px-3 border-r border-gray-200">07:56</td>
+              <td class="py-2 px-3 border-r border-gray-200">17:10</td>
+              <td class="py-2 px-3">
+                <span class="text-green-500 font-semibold text-[10px]">Hadir</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

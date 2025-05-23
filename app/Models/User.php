@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->hasOne(UserProfile::class, foreignKey: 'id');
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->user_level === 'admin';
+    }
+
     public function userAttendance()
     {
         return $this->hasMany(UserAttendance::class, foreignKey: 'user_id');

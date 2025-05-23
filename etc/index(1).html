@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Form Example</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center p-6">
+  <form class="max-w-5xl w-full bg-white rounded-md shadow-md p-6">
+    <!-- Informasi Utama -->
+    <h2 class="text-[#3AA59F] font-semibold text-sm mb-4">Informasi Utama</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4 mb-6">
+      <div>
+        <label for="user" class="block text-xs font-semibold mb-1">User <span class="text-red-600">*</span></label>
+        <select id="user" name="user" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]">
+          <option>Pilih User</option>
+        </select>
+      </div>
+      <div>
+        <label for="nik" class="block text-xs font-semibold mb-1">NIK <span class="text-red-600">*</span></label>
+        <input type="text" id="nik" name="nik" placeholder="Nomor Induk Karyawan" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+      <div>
+        <label for="jabatan" class="block text-xs font-semibold mb-1">Jabatan <span class="text-red-600">*</span></label>
+        <select id="jabatan" name="jabatan" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]">
+          <option>Pilih Jabatan</option>
+        </select>
+      </div>
+      <div>
+        <label for="departemen" class="block text-xs font-semibold mb-1">Departemen <span class="text-red-600">*</span></label>
+        <select id="departemen" name="departemen" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]">
+          <option>Pilih Departemen</option>
+        </select>
+      </div>
+      <div>
+        <label for="perusahaan" class="block text-xs font-semibold mb-1">Perusahaan <span class="text-red-600">*</span></label>
+        <input type="text" id="perusahaan" name="perusahaan" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+      <div>
+        <label for="nip" class="block text-xs font-semibold mb-1">NIP</label>
+        <input type="text" id="nip" name="nip" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+      <div>
+        <label for="supervisor" class="block text-xs font-semibold mb-1">Supervisor</label>
+        <select id="supervisor" name="supervisor" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]">
+          <option>Pilih Supervisor</option>
+        </select>
+      </div>
+      <div>
+        <label for="status-karyawan" class="block text-xs font-semibold mb-1">Status Karyawan <span class="text-red-600">*</span></label>
+        <select id="status-karyawan" name="status-karyawan" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]">
+          <option>Tetap</option>
+        </select>
+      </div>
+      <div>
+        <label for="tanggal-bergabung" class="block text-xs font-semibold mb-1">Tanggal Bergabung</label>
+        <input type="date" id="tanggal-bergabung" name="tanggal-bergabung" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+      <div>
+        <label for="lokasi-kerja" class="block text-xs font-semibold mb-1">Lokasi Kerja</label>
+        <input type="text" id="lokasi-kerja" name="lokasi-kerja" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+    </div>
+
+    <!-- Informasi Pribadi -->
+    <h2 class="text-[#3AA59F] font-semibold text-sm mb-4">Informasi Pribadi</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-4 mb-6">
+      <div>
+        <label for="jenis-kelamin" class="block text-xs font-semibold mb-1">Jenis Kelamin</label>
+        <select id="jenis-kelamin" name="jenis-kelamin" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]">
+          <option>Pilih Jenis Kelamin</option>
+        </select>
+      </div>
+      <div>
+        <label for="tempat-lahir" class="block text-xs font-semibold mb-1">Tempat Lahir</label>
+        <input type="text" id="tempat-lahir" name="tempat-lahir" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+      <div>
+        <label for="tanggal-lahir" class="block text-xs font-semibold mb-1">Tanggal Lahir</label>
+        <input type="date" id="tanggal-lahir" name="tanggal-lahir" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-6">
+      <div>
+        <label for="agama" class="block text-xs font-semibold mb-1">Agama</label>
+        <input type="text" id="agama" name="agama" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+      <div>
+        <label for="nomor-telepon" class="block text-xs font-semibold mb-1">Nomor Telepon</label>
+        <input type="text" id="nomor-telepon" name="nomor-telepon" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+    </div>
+    <div class="mb-6">
+      <label for="alamat-tinggal" class="block text-xs font-semibold mb-1">Alamat Tinggal Saat Ini</label>
+      <textarea id="alamat-tinggal" name="alamat-tinggal" rows="2" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 resize-none focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]"></textarea>
+    </div>
+    <div class="mb-6">
+      <label for="alamat-ktp" class="block text-xs font-semibold mb-1">Alamat Sesuai KTP</label>
+      <textarea id="alamat-ktp" name="alamat-ktp" rows="2" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 resize-none focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]"></textarea>
+    </div>
+
+    <!-- Dokumen & Identitas -->
+    <h2 class="text-[#3AA59F] font-semibold text-sm mb-4">Dokumen &amp; Identitas</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-6">
+      <div>
+        <label for="nomor-ktp" class="block text-xs font-semibold mb-1">Nomor KTP</label>
+        <input type="text" id="nomor-ktp" name="nomor-ktp" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+      <div>
+        <label for="npwp" class="block text-xs font-semibold mb-1">NPWP</label>
+        <input type="text" id="npwp" name="npwp" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+      </div>
+    </div>
+    <div class="mb-1">
+      <label for="status-ptkp" class="block text-xs font-semibold mb-1">Status PTKP</label>
+      <input type="text" id="status-ptkp" name="status-ptkp" class="w-full border border-gray-300 rounded px-3 py-1 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3AA59F] focus:border-[#3AA59F]" />
+    </div>
+    <p class="text-[10px] text-gray-400">Status Penghasilan Tidak Kena Pajak</p>
+  </form>
+</body>
+</html>
